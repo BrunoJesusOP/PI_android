@@ -11,5 +11,6 @@ class RetrofitInitializer{
         .build()
 
        fun userService() = retrofit.create(UserService::class.java)
+       fun eventsService() = retrofit.create(EventsService::class.java)
 
 }

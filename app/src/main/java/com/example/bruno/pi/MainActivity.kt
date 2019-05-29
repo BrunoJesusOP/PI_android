@@ -20,6 +20,14 @@ class MainActivity : AppCompatActivity() {
                 }
             }
         })
+        EventsWebClint(). list(object: EventsResponse<List<events>>{
+            override fun success(response: List<User>) {
+                Log.i("Dados: ", "dadosrecuperados")
+                for (events in response){
+                    Log.i("user: ", user.name + " - " + user.email)
+                }
+            }
+        })
 
     }
 }
