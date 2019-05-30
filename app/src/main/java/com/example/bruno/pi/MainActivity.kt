@@ -20,14 +20,15 @@ class MainActivity : AppCompatActivity() {
                 }
             }
         })
-        EventsWebClint(). list(object: EventsResponse<List<events>>{
-            override fun success(response: List<User>) {
+        EventWebClient(). list(object: EventResponse<List<Event>>{
+             override fun success(response: List<Event>) {
                 Log.i("Dados: ", "dadosrecuperados")
-                for (events in response){
-                    Log.i("user: ", user.name + " - " + user.email)
+                for (event in response){
+                    Log.i("Latitude: ", event.lat + " - " + event.long, "Descrição: ", event.descri)
                 }
             }
         })
 
     }
+
 }

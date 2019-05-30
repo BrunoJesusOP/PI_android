@@ -1,5 +1,5 @@
 package com.example.bruno.pi
 
-interface EventsResponse<T> {
+interface EventResponse<T> {
     fun  success(response: T)
 }

@@ -3,8 +3,8 @@ package com.example.bruno.pi
 import retrofit2.Call
 import retrofit2.http.*
 
-interface EventsService {
+interface EventService {
     @GET("events")
-    fun list(): Call<List<User>>
+    fun list(): Call<List<Event>>
 
 }
