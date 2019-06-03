@@ -2,6 +2,7 @@ package com.example.bruno.pi
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
@@ -33,11 +34,21 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
      * installed Google Play services and returned to the app.
      */
     override fun onMapReady(googleMap: GoogleMap) {
+        EventWebClient(). list(object: EventResponse<List<Event>>{
+            override fun success(response: List<Event>) {
+                for (event in response){
+                    addMarker(event, googleMap)
+                }
+            }
+        })
+    }
+
+    fun addMarker(event: Event, googleMap: GoogleMap){
         mMap = googleMap
 
-        // Add a marker in Sydney and move the camera
-        val sydney = LatLng(-34.0, 151.0)
-        mMap.addMarker(MarkerOptions().position(sydney).title("Marker in Sydney"))
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney))
+        val marker = LatLng(event.lat.toDouble(), event.long.toDouble())
+        mMap.addMarker(MarkerOptions().position(marker).title(event.descri))
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(marker, 15f))
     }
 }
+
